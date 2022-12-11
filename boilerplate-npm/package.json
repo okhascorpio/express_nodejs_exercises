@@ -1,0 +1,20 @@
+{
+	"name": "fcc-learn-npm-package-json",
+	"author": "faheem ahmed",
+	"description": "this is a demo for fcc",
+	"keywords": [ "hello", "world", "freecodecamp" ],
+	"license": "BSD",
+	"version": "1.0.0",
+	"dependencies": {
+		"@freecodecamp": "^1.0.0",
+		"express": "^4.14.0"
+	},
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://idontknow/todo.git"
+	}
+}
