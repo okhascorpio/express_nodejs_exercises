@@ -57,20 +57,43 @@ const findPeopleByName = (personName, done) => {
 };
 
 
+// 6. Use model.findOne() to Return a Single Matching Document from Your Database
+
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  Person.findOne({favoriteFoods: food}, (err, foodFound) => {
+    if (err) return console.log(err);
+    done(null, foodFound);
+  });
+  
 };
 
+
+// 7. Use model.findById() to Search Your Database By _id
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findById({_id: personId}, (err, personIdFound) => {
+    if (err) return console.log(err);
+    done(null, personIdFound);
+  });
+  
 };
+
+// 8. Perform Classic Updates by Running Find, Edit, then Save
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
+  Person.findById(personId, (err, person) => {
+    if (err) return console.lig(err);
+    person.favoriteFoods.push(foodToAdd);
+    person.save((err, personUpdate) => {
+      if (err) return console.log(err);
+      done(null, personUpdate);
+  });
 
-  done(null /*, data*/);
+  })
 };
 
+
+// 9. Perform New Updates on a Document Using model.findOneAndUpdate()
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
