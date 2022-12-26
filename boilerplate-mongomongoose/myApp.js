@@ -96,24 +96,52 @@ const findEditThenSave = (personId, done) => {
 // 9. Perform New Updates on a Document Using model.findOneAndUpdate()
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
+  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true}, (err, updatedDoc) => {
+    if (err) return console.log(err);
+    done(null, updatedDoc);
+  })
 
-  done(null /*, data*/);
+  
 };
+
+
+// 10. Delete One Document Using model.findByIdAndRemove
 
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findByIdAndRemove(personId, (err, personRemoved) => {
+    if (err) console.log(err);
+    done(null, personRemoved);
+  })
+  
 };
+
+// 11. Delete Many Documents with model.remove()
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
+  Person.remove({name: nameToRemove}, (err, personRemoved) => {
+    if (err) console.log(err);
+    done(null, personRemoved);
 
-  done(null /*, data*/);
+  });
+
 };
+
+
+// 12. Chain Search Query Helpers to Narrow Search Results
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
+  Person.find({favoriteFoods: foodToSearch})
+  .sort({name: 1})
+  .limit(2)
+  .select({age: 0})
+  .exec((err, people) => {
+    if (err) console.log(err);
+    done(null, people);
+  });
 
-  done(null /*, data*/);
+  
 };
 
 /** **Well Done !!**
