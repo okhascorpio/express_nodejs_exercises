@@ -40,26 +40,34 @@ app.get("/", function (req, res) {
 app.post("/api/shorturl", async (req, res) => {
   var { url: long } = req.body;
 
-  // if url is valid then get a short version of it
+  // if url is not valid
   if (!isUrlHttp(long)) {
     res.json({ error: "Invalid URL" });
   }
-
+// if url is valid then get a short version of it
   else {
     var short = await getShort(long);
     res.json({ original_url: long, short_url: short });
   }
 });
 
-
+// redirect short url to original url
 app.get("/api/shorturl/:short", (req,res) => {
   let test = req.params.short;
   urlModel.findOne({ shortURL: test }, (err, foundURL) => {
       if (err) throw err;
+      if (!foundURL){
+        res.json({error: "No short URL found for the given input"});
+       }
+        else  
       res.redirect(foundURL.longURL);
   });
 });  
-//insert new url
+
+
+
+
+//generate short url
 async function getShort(url) {
   var val;
 
