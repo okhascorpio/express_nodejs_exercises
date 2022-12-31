@@ -120,7 +120,7 @@ app.get
                 //{name: fName+" "+lName} //Also this works
               );
     }
-  
+     
 );
 
 
@@ -142,3 +142,4 @@ app.post
 
 
  module.exports = app;
+ 

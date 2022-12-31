@@ -4,13 +4,12 @@ const cors = require("cors");
 const app = express();
 
 const isUrlHttp = require('is-url-http');
-const isValidHostname = require('is-valid-hostname')
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
+  useCreateIndex: true
 });
 
 // create model schema
