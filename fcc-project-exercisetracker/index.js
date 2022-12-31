@@ -22,7 +22,7 @@ const exSchema = new mongoose.Schema({
             }]
   });
 
-const userModel = mongoose.model("ex", exSchema);
+const userModel = mongoose.model("exercise", exSchema);
 
 
 app.use(cors())
