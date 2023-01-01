@@ -28,7 +28,7 @@ if (!req.file){
   done(null);
 }
 else {
-  console.log(req.file, req.body);
+  //console.log(req.file, req.body);
   const resObj = {
     name: req.file.originalname,
     type: req.file.mimetype,
